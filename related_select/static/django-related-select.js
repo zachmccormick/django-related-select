@@ -5,10 +5,16 @@ $(function() {
     var relatedDependent = $(this).data("relatedDependent");
     var relatedUrl = $(this).data("relatedUrl");
     var emptyLabel = $(this).data("emptyLabel");
-    // empty and set readonly until we have real things to put in it
-    $select_box.empty();
-    $select_box.append($("<option></option>").attr("value", "").text(emptyLabel));
-    $select_box.prop("readonly", true);
+    if ($select_box.children().length > 0) {
+      if ($select_box.children("[selected]").length) {
+        $select_box.prepend($("<option></option>").attr("value", "").text(emptyLabel));
+      } else {
+        $select_box.prepend($("<option></option>").attr("value", "").prop("selected", true).text(emptyLabel));
+      }
+    } else {
+      $select_box.append($("<option></option>").attr("value", "").text(emptyLabel));
+      $select_box.prop("readonly", true);
+    }
     $("#id_" + relatedDependent).change(function(event) {
       var data = {};
       data['value'] = $(this).val();
