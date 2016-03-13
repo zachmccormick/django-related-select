@@ -22,7 +22,14 @@ Add to INSTALLED_APPS
 
     class MyForm(forms.Form):
         foo = forms.ChoiceField(choices=[('foo', 'foo')])
-        bar = RelatedModelChoiceField(related_dependent='foo', related_url=reverse_lazy('my-related-select-view'))
+        bar = RelatedChoiceField(related_dependent='foo', related_url=reverse_lazy('my-related-select-view'))
+        
+        # optional if you're using bound forms, for error handling or pre-filling of fields
+        # otherwise any RelatedChoiceFields will lose their contents
+        def __init__(self, **kwargs):
+            super(MyForm, self).__init__(**kwargs)
+            if self.is_bound:
+                self.fields['bar'].init_bound_field(self.data.get('foo'))
 
 ### View
 
