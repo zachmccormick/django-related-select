@@ -11,7 +11,7 @@ $(function() {
     $select_box.prop("readonly", true);
     $("#id_" + relatedDependent).change(function(event) {
       var data = {};
-      data[relatedDependent] = $(this).val();
+      data['value'] = $(this).val();
       $.ajax({
         url: relatedUrl,
         type: "GET",
