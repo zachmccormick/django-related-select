@@ -41,3 +41,12 @@ Add to INSTALLED_APPS
             # uses str(obj) by default, but can return any string
             return '({}) {}'.format(obj.id, obj.name)
 
+### Template
+
+    <html>
+    ...
+    {{ form.bar }}
+    ...
+    <script src='{% static "django-related-select.js" %}'></script>
+    ...
+    </html>
