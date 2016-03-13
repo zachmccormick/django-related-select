@@ -36,5 +36,9 @@ class RelatedChoiceField(ChoiceField):
         self.choices = choices
 
     def validate(self, value):
-        # we can't do real validation here.
-        return True
+        if self.choices:
+            # actually checks vs. choices
+            return super(RelatedChoiceField, self).validate(value)
+        else:
+            # does the normal check for blank and required=True
+            return super(ChoiceField, self).validate(value)
