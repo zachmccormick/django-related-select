@@ -4,7 +4,7 @@ from django.test import TestCase, Client
 from related_select.views import RelatedSelectView
 
 
-class TestRelatedSelectView(RelatedSelectView):
+class ClsTestRelatedSelectView(RelatedSelectView):
     @staticmethod
     def filter(value, **kwargs):
         assert kwargs.get('user') is not None

@@ -6,7 +6,7 @@ from django.test import TestCase
 from related_select.fields import RelatedChoiceField
 
 
-class TestForm(forms.Form):
+class ClsTestForm(forms.Form):
     foo = forms.ChoiceField(choices=[('foo', 'foo')])
     bar = RelatedChoiceField(related_dependent='foo', related_url=reverse_lazy('test-view'))
 
@@ -20,6 +20,6 @@ class FieldTestCase(TestCase):
 
     def test_field(self):
         template = Template('{{ form.bar }}')
-        context = Context({'form': TestForm()})
+        context = Context({'form': ClsTestForm()})
         self.assertTrue('data-related-dependent="foo"' in template.render(context))
         self.assertTrue('data-related-url="/"' in template.render(context))
