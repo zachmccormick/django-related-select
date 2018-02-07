@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from tests.test_views import TestRelatedSelectView
+from tests.test_views import ClsTestRelatedSelectView
 
 urlpatterns = [
-    url(r'', TestRelatedSelectView.as_view(), name='test-view'),
+    url(r'', ClsTestRelatedSelectView.as_view(), name='test-view'),
 ]
