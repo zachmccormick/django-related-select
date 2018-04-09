@@ -1,6 +1,9 @@
 import json
 
-from django.core.urlresolvers import resolve
+try:
+    from django.core.urlresolvers import resolve
+except:
+    from django.urls import resolve
 from django.forms import ChoiceField
 
 
@@ -27,6 +30,7 @@ class RelatedChoiceField(ChoiceField):
             method = 'GET'
             GET = {'value': obj}
             user = request_user
+
         resolver_match = resolve(self.related_url)
         response = resolver_match.func(FakeRequest())
         choices = []
