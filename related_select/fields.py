@@ -35,6 +35,8 @@ class RelatedChoiceField(ChoiceField):
         response = resolver_match.func(FakeRequest())
         choices = []
         content = response.content.decode()
+        if not self.required:
+            choices.append(('', self.empty_label))
         for item in json.loads(content):
             choices.append((item['value'], item['key']))
         self.choices = choices
