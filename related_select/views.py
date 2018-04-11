@@ -31,11 +31,17 @@ class RelatedSelectView(View):
     def to_value(obj):
         return obj.id
 
+    @staticmethod
+    def blank_value():
+        return None  # override to provide a blank value
+
     def dispatch(self, request, *args, **kwargs):
         if request.method != 'GET':
             raise NotImplementedError('This view only accepts GET requests')
         v = request.GET.get('value', None)
         ajax_list = []
+        if self.blank_value():
+            ajax_list.append(self.blank_value())
         for model_instance in self.filter(v, user=request.user):
             ajax_list.append({'key': self.to_text(model_instance),
                               'value': self.to_value(model_instance)})

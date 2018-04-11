@@ -1,7 +1,11 @@
 from django import forms
-from django.core.urlresolvers import reverse_lazy
+
 from django.template import Template, Context
 from django.test import TestCase
+try:
+    from django.urls import reverse_lazy
+except:
+    from django.core.urlresolvers import reverse_lazy
 
 from related_select.fields import RelatedChoiceField
 

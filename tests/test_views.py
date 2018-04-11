@@ -1,4 +1,7 @@
-from django.core.urlresolvers import reverse
+try:
+    from django.urls import reverse_lazy
+except:
+    from django.core.urlresolvers import reverse_lazy
 from django.test import TestCase, Client
 
 from related_select.views import RelatedSelectView
@@ -25,7 +28,7 @@ class ViewTestCase(TestCase):
 
     def test_foo(self):
         c = Client()
-        r = c.get(reverse('test-view'), data={'value': 'xyz'})
+        r = c.get(reverse_lazy('test-view'), data={'value': 'xyz'})
         self.assertEqual(r.status_code, 200)
         options = r.json()
         self.assertEqual(len(options), 1)

@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='django-related-select',
     packages=['related_select'],
-    version='0.9.1',
+    version='0.9.2',
     description='Class-based View and django form field for related select boxes',
     author='Zach McCormick',
     author_email='zachary.tyler.mccormick@gmail.com',
